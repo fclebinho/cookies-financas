@@ -1,5 +1,6 @@
 import styles from '../styles/pages/Profile.module.css';
 
+import withAuth from '../withAuth'
 import { useState } from 'react';
 import { useUserContext } from '../UserProvider';
 import Head from 'next/head';
@@ -77,4 +78,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default withAuth(Profile);
