@@ -1,4 +1,4 @@
-import styles from '../styles/components/Layout.module.css';
+import styles from '@/styles/components/Layout.module.css';
 
 import { useSignOut } from '@nhost/nextjs'
 import React, { FC, Fragment } from 'react';

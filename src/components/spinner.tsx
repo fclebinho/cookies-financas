@@ -1,4 +1,4 @@
-import styles from '../styles/components/Spinner.module.css';
+import styles from '@/styles/components/Spinner.module.css';
 
 import classNames from 'classnames';
 
