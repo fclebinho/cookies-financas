@@ -1,7 +1,7 @@
 import styles from '../styles/components/SignIn.module.css'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { useSignInEmailPassword } from '@nhost/nextjs'
+import { useSignInEmailPassword, useNhostClient } from '@nhost/nextjs'
 import Link from 'next/link'
 import Image from 'next/image'
 import Input from '../components/Input'
@@ -12,6 +12,7 @@ const SignIn = () => {
   const [password, setPassword] = useState('')
 
   const router = useRouter()
+  const { auth } = useNhostClient()
 
   const { signInEmailPassword, isLoading, isSuccess, needsEmailVerification, isError, error } =
     useSignInEmailPassword()
@@ -27,6 +28,8 @@ const SignIn = () => {
   }
 
   const disableForm = isLoading || needsEmailVerification
+
+  const handleGoogle = () => auth.signIn({ provider: 'google' })
 
   return (
     <div className={styles.container}>
@@ -75,6 +78,8 @@ const SignIn = () => {
           <a className={styles.link}>Sign up</a>
         </Link>
       </p>
+
+      <button type='button' onClick={handleGoogle}>Google</button>
     </div>
   )
 }
