@@ -1,9 +1,9 @@
 import styles from '../styles/pages/Home.module.css';
 
-import { useUserContext } from '../UserProvider';
+import { useUserContext } from '@/providers/user-provider';
 import Head from 'next/head';
-import Layout from '../components/Layout';
-import withAuth from '../withAuth'
+import Layout from '@/components/layout';
+import withAuth from '@/hooks/with-auth'
 
 const Home = () => {
   const { user } = useUserContext();
@@ -19,7 +19,7 @@ const Home = () => {
 
         <p className={styles['welcome-text']}>
           Welcome, {user?.metadata?.firstName || 'stranger'}{' '}
-          <span role="img" alt="hello">
+          <span role="img" >
             👋
           </span>
         </p>

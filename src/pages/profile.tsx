@@ -1,11 +1,11 @@
 import styles from '../styles/pages/Profile.module.css';
 
-import withAuth from '../withAuth'
+import withAuth from '@/hooks/withAuth'
 import { useState } from 'react';
 import { useUserContext } from '../UserProvider';
 import Head from 'next/head';
-import Layout from '../components/Layout';
-import Input from '../components/Input';
+import Layout from '@/components/Layout';
+import Input from '@/components/Input';
 
 const Profile = () => {
   const { user } = useUserContext();

@@ -1,22 +1,23 @@
-import styles from '../styles/components/SignIn.module.css'
+import styles from '@/styles/components/SignIn.module.css'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { useSignInEmailPassword } from '@nhost/nextjs'
+import { useSignInEmailPassword, useNhostClient } from '@nhost/nextjs'
 import Link from 'next/link'
 import Image from 'next/image'
-import Input from '../components/Input'
-import Spinner from '../components/Spinner'
+import Input from '@/components/input'
+import Spinner from '@/components/spinner'
 
 const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const router = useRouter()
+  const { auth } = useNhostClient()
 
   const { signInEmailPassword, isLoading, isSuccess, needsEmailVerification, isError, error } =
     useSignInEmailPassword()
 
-  const handleOnSubmit = async (e) => {
+  const handleOnSubmit = async (e: any) => {
     e.preventDefault()
     await signInEmailPassword(email, password)
   }
@@ -27,6 +28,8 @@ const SignIn = () => {
   }
 
   const disableForm = isLoading || needsEmailVerification
+
+  const handleGoogle = () => auth.signIn({ provider: 'google' })
 
   return (
     <div className={styles.container}>
@@ -46,7 +49,7 @@ const SignIn = () => {
                 type="email"
                 label="Email address"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e: any) => setEmail(e.target.value)}
                 disabled={disableForm}
                 required
               />
@@ -54,7 +57,7 @@ const SignIn = () => {
                 type="password"
                 label="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: any) => setPassword(e.target.value)}
                 disabled={disableForm}
                 required
               />
@@ -71,10 +74,12 @@ const SignIn = () => {
 
       <p className={styles.text}>
         No account yet?{' '}
-        <Link href="/sign-up">
-          <a className={styles.link}>Sign up</a>
+        <Link href="/sign-up" className={styles.link}>
+          Sign up
         </Link>
       </p>
+
+      <button type='button' onClick={handleGoogle}>Google</button>
     </div>
   )
 }

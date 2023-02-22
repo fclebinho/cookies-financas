@@ -3,13 +3,13 @@ import styles from '../styles/components/SignIn.module.css';
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Input from './Input';
+import Input from '@/components/input';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleOnSubmit = e => {
+  const handleOnSubmit = (e: any) => {
     e.preventDefault();
   };
 
@@ -25,14 +25,14 @@ const SignIn = () => {
             type="email"
             label="Email address"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e: any) => setEmail(e.target.value)}
             required
           />
           <Input
             type="password"
             label="Password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e: any) => setPassword(e.target.value)}
             required
           />
 
@@ -44,8 +44,8 @@ const SignIn = () => {
 
       <p className={styles.text}>
         No account yet?{' '}
-        <Link href="/sign-up">
-          <a className={styles.link}>Sign up</a>
+        <Link href="/sign-up" className={styles.link}>
+          Sign up
         </Link>
       </p>
     </div>

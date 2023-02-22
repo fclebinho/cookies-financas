@@ -1,10 +1,10 @@
-import styles from './styles/pages/ProtectedRoute.module.css'
+import styles from '@/styles/pages/ProtectedRoute.module.css'
 import { useRouter } from 'next/router'
 import { useAuthenticationStatus } from '@nhost/nextjs'
-import Spinner from './components/Spinner'
+import Spinner from '@/components/spinner'
 
-export default function withAuth(Component) {
-  return function AuthProtected(props) {
+export default function withAuth(Component: any) {
+  return function AuthProtected(props: any) {
     const router = useRouter()
     const { isLoading, isAuthenticated } = useAuthenticationStatus()
 

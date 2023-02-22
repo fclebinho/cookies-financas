@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import { useUserId } from '@nhost/nextjs'
 import { gql, useQuery } from '@apollo/client'
 
@@ -14,9 +14,26 @@ const GET_USER_QUERY = gql`
   }
 `
 
-const UserContext = React.createContext(null);
+export type User = {
+  avatarUrl: string 
+  displayName: string 
+  email: string
+  metadata: {
+    firstName: string
+  }
+}
 
-export function UserProvider({ children = null }) {
+export interface UserContextProps {
+  user?: User
+}
+
+const UserContext = React.createContext<UserContextProps>({});
+
+export interface UserProviderProps {
+  children?: React.ReactNode
+}
+
+export const UserProvider: FC<UserProviderProps> = ({ children = null }) => {
   const id = useUserId()
 
   const { loading, error, data } = useQuery(GET_USER_QUERY, {

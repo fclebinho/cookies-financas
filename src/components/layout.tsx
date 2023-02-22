@@ -1,8 +1,8 @@
 import styles from '../styles/components/Layout.module.css';
 
 import { useSignOut } from '@nhost/nextjs'
-import React, { Fragment } from 'react';
-import { useUserContext } from '../UserProvider';
+import React, { FC, Fragment } from 'react';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, Transition } from '@headlessui/react';
@@ -11,10 +11,17 @@ import {
   HomeIcon,
   LogoutIcon,
   UserIcon,
-} from '@heroicons/react/outline';
-import Avatar from './Avatar';
+} from '@heroicons/react';
+import Avatar from './avatar';
+import { useUserContext } from '@/providers/user-provider';
+import logo from '@/assets/images/logo.svg'
+import { CaretDown } from 'phosphor-react';
 
-const Layout = ({ children = null }) => {
+  export interface LayoutProps {
+    children?: React.ReactNode
+  }
+
+const Layout: FC<LayoutProps> = ({ children = null }) => {
   const { user } = useUserContext();
   const { signOut } = useSignOut()
 
@@ -43,21 +50,17 @@ const Layout = ({ children = null }) => {
         <div className={styles['header-container']}>
           <div className={styles['logo-wrapper']}>
             <Link href="/">
-              <a>
-                <Image
-                  src="/logo.svg"
-                  alt="logo"
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </a>
+              <Image
+                src={logo}
+                alt="logo"
+              />
             </Link>
           </div>
 
           <Menu as="div" className={styles.menu}>
             <Menu.Button className={styles['menu-button']}>
               <Avatar src={user?.avatarUrl} alt={user?.displayName} />
-              <ChevronDownIcon />
+              <CaretDown />
             </Menu.Button>
             <Transition
               as={Fragment}
@@ -83,10 +86,8 @@ const Layout = ({ children = null }) => {
                       <Menu.Item>
                         {href ? (
                           <Link href={href}>
-                            <a>
-                              <Icon />
-                              <span>{label}</span>
-                            </a>
+                            <Icon />
+                            <span>{label}</span>
                           </Link>
                         ) : (
                           <button onClick={onClick}>

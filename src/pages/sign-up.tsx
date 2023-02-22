@@ -1,11 +1,11 @@
-import styles from '../styles/components/SignUp.module.css'
+import styles from '.@/styles/components/SignUp.module.css'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSignUpEmailPassword } from '@nhost/nextjs'
 import Link from 'next/link'
 import Image from 'next/image'
-import Input from '../components/Input'
-import Spinner from '../components/Spinner'
+import Input from '@/components/input'
+import Spinner from '@/components/spinner'
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('')
@@ -18,7 +18,7 @@ const SignUp = () => {
   const { signUpEmailPassword, isLoading, isSuccess, needsEmailVerification, isError, error } =
     useSignUpEmailPassword()
 
-  const handleOnSubmit = async (e) => {
+  const handleOnSubmit = async (e: any) => {
     e.preventDefault()
 
     await signUpEmailPassword(email, password, {
@@ -54,14 +54,14 @@ const SignUp = () => {
               <Input
                 label="First name"
                 value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e: any) => setFirstName(e.target.value)}
                 disabled={disableForm}
                 required
               />
               <Input
                 label="Last name"
                 value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                onChange={(e: any) => setLastName(e.target.value)}
                 disabled={disableForm}
                 required
               />
@@ -70,7 +70,7 @@ const SignUp = () => {
               type="email"
               label="Email address"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: any) => setEmail(e.target.value)}
               disabled={disableForm}
               required
             />
@@ -78,7 +78,7 @@ const SignUp = () => {
               type="password"
               label="Create password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: any) => setPassword(e.target.value)}
               disabled={disableForm}
               required
             />
@@ -94,8 +94,8 @@ const SignUp = () => {
 
       <p className={styles.text}>
         Already have an account?{' '}
-        <Link href="/sign-in">
-          <a className={styles.link}>Sign in</a>
+        <Link href="/sign-in" className={styles.link}>
+          Sign in
         </Link>
       </p>
     </div>

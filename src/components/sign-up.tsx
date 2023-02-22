@@ -3,7 +3,7 @@ import styles from '../styles/components/SignUp.module.css';
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Input from './Input';
+import Input from './input';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -11,7 +11,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleOnSubmit = e => {
+  const handleOnSubmit = (e: any) => {
     e.preventDefault();
   };
 
@@ -27,13 +27,13 @@ const SignUp = () => {
             <Input
               label="First name"
               value={firstName}
-              onChange={e => setFirstName(e.target.value)}
+              onChange={(e: any) => setFirstName(e.target.value)}
               required
             />
             <Input
               label="Last name"
               value={lastName}
-              onChange={e => setLastName(e.target.value)}
+              onChange={(e: any) => setLastName(e.target.value)}
               required
             />
           </div>
@@ -41,14 +41,14 @@ const SignUp = () => {
             type="email"
             label="Email address"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e: any) => setEmail(e.target.value)}
             required
           />
           <Input
             type="password"
             label="Create password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e: any) => setPassword(e.target.value)}
             required
           />
 
@@ -60,8 +60,8 @@ const SignUp = () => {
 
       <p className={styles.text}>
         Already have an account?{' '}
-        <Link href="/sign-in">
-          <a className={styles.link}>Sign in</a>
+        <Link href="/sign-in" className={styles.link}>
+          Sign in
         </Link>
       </p>
     </div>
