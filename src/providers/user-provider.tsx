@@ -20,6 +20,7 @@ export type User = {
   email: string
   metadata: {
     firstName: string
+    lastName: string
   }
 }
 

@@ -6,16 +6,10 @@ import React, { FC, Fragment } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, Transition } from '@headlessui/react';
-import {
-  ChevronDownIcon,
-  HomeIcon,
-  LogoutIcon,
-  UserIcon,
-} from '@heroicons/react';
-import Avatar from './avatar';
 import { useUserContext } from '@/providers/user-provider';
 import logo from '@/assets/images/logo.svg'
-import { CaretDown } from 'phosphor-react';
+import { CaretDown, HouseSimple, SignOut, User } from 'phosphor-react';
+import { Avatar } from '@cookies-ui/react';
 
   export interface LayoutProps {
     children?: React.ReactNode
@@ -30,17 +24,17 @@ const Layout: FC<LayoutProps> = ({ children = null }) => {
     {
       label: 'Dashboard',
       href: '/',
-      icon: HomeIcon,
+      icon: HouseSimple,
     },
     {
       label: 'Profile',
       href: '/profile',
-      icon: UserIcon,
+      icon: User,
     },
     {
       label: 'Logout',
       onClick: signOut,
-      icon: LogoutIcon
+      icon: SignOut
     },
   ];
 
@@ -59,7 +53,7 @@ const Layout: FC<LayoutProps> = ({ children = null }) => {
 
           <Menu as="div" className={styles.menu}>
             <Menu.Button className={styles['menu-button']}>
-              <Avatar src={user?.avatarUrl} alt={user?.displayName} />
+              <Avatar src={user?.avatarUrl} size='small' referrerPolicy="no-referrer" alt={user?.displayName} />
               <CaretDown />
             </Menu.Button>
             <Transition
@@ -73,7 +67,7 @@ const Layout: FC<LayoutProps> = ({ children = null }) => {
             >
               <Menu.Items className={styles['menu-items-container']}>
                 <div className={styles['menu-header']}>
-                  <Avatar src={user?.avatarUrl} alt={user?.displayName} />
+                  <Avatar src={user?.avatarUrl} size='small' alt={user?.displayName} />
                   <div className={styles['user-details']}>
                     <span>{user?.displayName}</span>
                     <span className={styles['user-email']}>{user?.email}</span>

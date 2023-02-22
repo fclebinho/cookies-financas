@@ -1,11 +1,13 @@
 import styles from '../styles/pages/Profile.module.css';
 
-import withAuth from '@/hooks/withAuth'
+
 import { useState } from 'react';
-import { useUserContext } from '../UserProvider';
 import Head from 'next/head';
-import Layout from '@/components/Layout';
-import Input from '@/components/Input';
+import Layout from '@/components/layout';
+import Input from '@/components/input';
+import { useUserContext } from '@/providers/user-provider';
+import withAuth from '@/hooks/with-auth';
+
 
 const Profile = () => {
   const { user } = useUserContext();
@@ -17,7 +19,7 @@ const Profile = () => {
   const isLastNameDirty = lastName !== user?.metadata?.lastName;
   const isProfileFormDirty = isFirstNameDirty || isLastNameDirty;
 
-  const updateUserProfile = async e => {
+  const updateUserProfile = async (e: any) => {
     e.preventDefault();
   };
 
@@ -41,14 +43,14 @@ const Profile = () => {
                   type="text"
                   label="First name"
                   value={firstName}
-                  onChange={e => setFirstName(e.target.value)}
+                  onChange={(e: any) => setFirstName(e.target.value)}
                   required
                 />
                 <Input
                   type="text"
                   label="Last name"
                   value={lastName}
-                  onChange={e => setLastName(e.target.value)}
+                  onChange={(e: any) => setLastName(e.target.value)}
                   required
                 />
               </div>
