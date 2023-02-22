@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Input from './input';
+import logo from '@/assets/images/logo.svg'
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -19,7 +20,7 @@ const SignUp = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles['logo-wrapper']}>
-          <Image src="/logo.svg" alt="logo" layout="fill" objectFit="contain" />
+          <Image src={logo} alt="logo" />
         </div>
 
         <form onSubmit={handleOnSubmit} className={styles.form}>
