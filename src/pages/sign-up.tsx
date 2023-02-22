@@ -1,4 +1,4 @@
-import styles from '.@/styles/components/SignUp.module.css'
+import styles from '@/styles/components/SignUp.module.css'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSignUpEmailPassword } from '@nhost/nextjs'
